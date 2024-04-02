@@ -1,0 +1,21 @@
+
+<h2>Listado de heroes</h2>
+<hr>
+
+<div class="row">
+  <div class="col">
+    <shared-search-box
+      (onValue)="searchByHeroes($event)"
+      placeholder="Buscar heroe"></shared-search-box>
+  </div>
+</div>
+<hr>
+<div class="row" *ngIf="!loading">
+  <div class="col">
+    <div class="d-inline-block m-1" *ngFor="let heroe of heroes;">
+      <heroe-card [heroe]="heroe" (heroeSeleccionado)="onHeroeSeleccionado($event)" (refreshList)="onRefreshList($event)"></heroe-card>
+    </div>
+  </div>
+</div>
+<div *ngIf="loading">Cargando...</div>
+

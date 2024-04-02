@@ -1,0 +1,6 @@
+
+/* Personalizar el divisor */
+.custom-divider {
+  border-top: 1px solid rgba(0, 0, 0, 0.12); /* Cambia el color y la opacidad según tus preferencias */
+  margin-bottom: 8px;
+}

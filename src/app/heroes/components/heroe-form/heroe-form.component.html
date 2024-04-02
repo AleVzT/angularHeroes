@@ -1,0 +1,23 @@
+<form [formGroup]="formulario" (ngSubmit)="onSubmit()" class="mt-4">
+  <div class="mb-3">
+    <label for="name" class="form-label">Nombre:</label>
+    <input type="text" id="name" formControlName="nombre" class="form-control" inputUpperCase>
+  </div>
+  <div class="mb-3">
+    <label for="poder" class="form-label">Poder:</label>
+    <input type="text" id="poder" formControlName="poder" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label for="imageUrl" class="form-label">URL de la imagen:</label>
+    <input type="text" id="imageUrl" formControlName="imageUrl" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label for="aliados" class="form-label">Aliados:</label>
+    <input type="text" id="aliados" formControlName="aliados" class="form-control">
+  </div>
+  <div class="mb-3">
+    <label for="debilidad" class="form-label">Debilidad:</label>
+    <input type="text" id="debilidad" formControlName="debilidad" class="form-control">
+  </div>
+  <button type="submit" [disabled]="formulario.invalid" class="btn btn-primary">Enviar</button>
+</form>
