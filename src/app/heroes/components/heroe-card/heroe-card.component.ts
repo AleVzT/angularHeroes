@@ -9,8 +9,8 @@ import Swal from 'sweetalert2'
 export class HeroeCardComponent implements OnInit {
   @Input() heroe: any = {};
 
-  @Output() heroeSeleccionado: EventEmitter<number> = new EventEmitter();
-  @Output() heroeEliminado: EventEmitter<number> = new EventEmitter();
+  @Output() heroeSeleccionado: EventEmitter<string> = new EventEmitter();
+  @Output() heroeEliminado: EventEmitter<string> = new EventEmitter();
 
 
   constructor(
