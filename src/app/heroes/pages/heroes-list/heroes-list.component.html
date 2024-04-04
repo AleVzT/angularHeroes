@@ -13,7 +13,11 @@
 <div class="row" *ngIf="!loading">
   <div class="col">
     <div class="d-inline-block m-1" *ngFor="let heroe of heroes;">
-      <heroe-card [heroe]="heroe" (heroeSeleccionado)="onHeroeSeleccionado($event)" (refreshList)="onRefreshList($event)"></heroe-card>
+      <heroe-card 
+        [heroe]="heroe"
+        (heroeSeleccionado)="onHeroeSeleccionado($event)"
+        (heroeEliminado)="onHeroeEliminado($event)">
+      ></heroe-card>
     </div>
   </div>
 </div>

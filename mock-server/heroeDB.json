@@ -1,29 +1,28 @@
 {
   "heroes": [
     {
-      "nombre": "SPIDERMAN",
+      "nombre": "SPIDERMANX",
       "poder": "capacidad para trepar paredes y superficies verticales",
       "imageUrl": "https://media.vandal.net/i/640x360/10-2023/17/202310171642263_5.jpg",
       "aliados": [
         "Thor",
         "Hulk",
-        "Mary Jane Watso",
-        "pedro marin der mosillo"
+        "Mary Jane Watso"
       ],
       "debilidad": "seguridad y el bienestar de los demás",
       "id": "1"
     },
     {
+      "id": "f76a",
       "nombre": "BATMAN",
       "poder": "Riqueza y recursos tecnológicosxs",
       "imageUrl": "https://www.consumidorglobal.com/uploads/s1/23/05/48/batman.jpeg",
       "aliados": [
+        "flash",
         "Superman",
-        "Wonder Woman",
-        "flash"
+        "Wonder Woman"
       ],
-      "debilidad": "Humanidad y falta de poderes sobrehumanos",
-      "id": "3"
+      "debilidad": "Humanidad y falta de poderes sobrehumanos"
     }
   ]
 }
