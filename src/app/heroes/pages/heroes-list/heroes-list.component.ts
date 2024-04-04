@@ -60,11 +60,11 @@ export class HeroesListComponent implements OnInit {
     }
   }
 
-  onHeroeSeleccionado(id: number) {
+  onHeroeSeleccionado(id: string) {
     this.router.navigate(['/heroes/new', id]);
   }
 
-  onHeroeEliminado(id: number) {
+  onHeroeEliminado(id: string) {
     this.getHeroesList();
   }
 
