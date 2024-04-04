@@ -8,7 +8,6 @@ import Swal from 'sweetalert2'
 @Component({
   selector: 'page-heroe-form',
   templateUrl: './heroe-form.component.html',
-  styleUrl: './heroe-form.component.css'
 })
 export class HeroeFormComponent implements OnInit {
   @Input() heroeId: string;
@@ -55,7 +54,14 @@ export class HeroeFormComponent implements OnInit {
         this.heroesService.agregarHeroe(this.formulario.value)
           .subscribe(
             {
-              next: response => this.router.navigate(['/heroes']),
+              next: (response: { agregado: string, motivo: string }) => {
+                if(response.agregado) {
+                  Swal.fire("Heroe agregado!", "", "success");
+                  this.router.navigate(['/heroes'])
+                } else {
+                  Swal.fire(response.motivo, "", "error");
+                }   
+              },
               error: error => {
                 Swal.fire("Error al crear el heroe!", "", "error");
               }

@@ -1,21 +1,19 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
-import Swal from 'sweetalert2'
 import { HeroesService } from '../../services/heroes.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'heroe-card',
   templateUrl: './heroe-card.component.html',
-  styleUrl: './heroe-card.component.css'
 })
 export class HeroeCardComponent implements OnInit {
   @Input() heroe: any = {};
 
   @Output() heroeSeleccionado: EventEmitter<number> = new EventEmitter();
-  @Output() refreshList: EventEmitter<boolean> = new EventEmitter();
+  @Output() heroeEliminado: EventEmitter<number> = new EventEmitter();
+
 
   constructor(
-    private router: Router,
     private heroesService: HeroesService,
   ) { }
 
@@ -31,12 +29,10 @@ export class HeroeCardComponent implements OnInit {
       showCancelButton: true,
       confirmButtonText: "Aceptar",
     }).then((result) => {
-     
       if (result.isConfirmed) {
         this.heroesService.eliminarHeroe(this.heroe.id).subscribe({
           next: () => {
             Swal.fire("Heroe borrado!", "", "success");
-            this.refreshList.emit(true);
           },
           error: error => {
             Swal.fire({
@@ -44,8 +40,9 @@ export class HeroeCardComponent implements OnInit {
               title: "Oops...",
               text: "No se pudo borrar el heroe!",
             });
-          }
+          },
         });
+        this.heroeEliminado.emit(this.heroe.id);
       }
     });
   }
