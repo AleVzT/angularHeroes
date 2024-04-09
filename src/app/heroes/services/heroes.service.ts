@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Heroe } from '../interfaces/heroe';
 import { Observable, of, throwError } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { HeroeEventosService } from './heroeEventosService';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class HeroesService {
 
   constructor(
     private http: HttpClient,
+    private heroeEventosService: HeroeEventosService
   ) { }
 
   getHeroes(): Observable<Heroe[]> {
@@ -41,7 +43,15 @@ export class HeroesService {
 
   eliminarHeroe(id: string): Observable<void> {
     const url = `${this.baseUrl}/${id}`;
-    return this.http.delete<void>(url);
+    return this.http.delete<void>(url).pipe(
+      tap(() => {
+        this.heroeEventosService.notificarHeroeEliminado(id);
+      }),
+      catchError(error => {
+        console.error('Error al eliminar el héroe:', error);
+        return throwError(() => error);
+      })
+    );
   }
 
   /* Esta deberia ser la forma correcta pero no logre hacerla andar */

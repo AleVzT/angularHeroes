@@ -4,7 +4,7 @@ import { Heroe } from '../../interfaces/heroe';
 import { HeroesService } from '../../services/heroes.service';
 import { LoadingService } from '../../services/loading-service.service';
 import { Router } from '@angular/router';
-import { finalize } from 'rxjs/operators';
+import { HeroeEventosService } from '../../services/heroeEventosService';
 
 @Component({
   selector: 'app-heroes-list',
@@ -14,14 +14,19 @@ export class HeroesListComponent implements OnInit {
   loading: boolean;
   heroes: Heroe[] = [];
   private loadingSubscription: Subscription;
+  private heroeEliminadoSubscription: Subscription;
 
   constructor(
     private heroesServices: HeroesService,
     private router: Router,
     private loadingService: LoadingService,
+    private heroeEventosService: HeroeEventosService
   ) { 
     this.loadingSubscription = this.loadingService.loading$.subscribe(loading => {
       this.loading = loading;
+    });
+    this.heroeEliminadoSubscription = this.heroeEventosService.heroeEliminado$.subscribe(id => {
+      this.getHeroesList();
     });
   }
 
@@ -70,6 +75,7 @@ export class HeroesListComponent implements OnInit {
 
   ngOnDestroy() {
     this.loadingSubscription.unsubscribe();
+    this.heroeEliminadoSubscription.unsubscribe();
   }
 
 }

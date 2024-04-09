@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { HeroesService } from '../../services/heroes.service';
+import { HeroeEventosService } from '../../services/heroeEventosService';
 import Swal from 'sweetalert2'
 
 @Component({
@@ -15,6 +16,7 @@ export class HeroeCardComponent implements OnInit {
 
   constructor(
     private heroesService: HeroesService,
+    private heroeEventosService: HeroeEventosService
   ) { }
 
   ngOnInit(): void { }
@@ -33,6 +35,7 @@ export class HeroeCardComponent implements OnInit {
         this.heroesService.eliminarHeroe(this.heroe.id).subscribe({
           next: () => {
             Swal.fire("Heroe borrado!", "", "success");
+            this.heroeEventosService.notificarHeroeEliminado(this.heroe.id);
           },
           error: error => {
             Swal.fire({
